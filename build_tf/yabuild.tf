@@ -18,8 +18,8 @@ data "yandex_compute_image" "ubuntu_image" {
   family = "ubuntu-2004-lts"
 }
 
-resource "yandex_compute_instance" "dev" {
-  name = "dev"
+resource "yandex_compute_instance" "vm-1" {
+  name = "vm-1"
 
   resources {
     cores  = 2
@@ -44,14 +44,13 @@ resource "yandex_compute_instance" "dev" {
 
 }
 
-# test
 
-resource "yandex_compute_instance" "prod" {
-  name = "prod"
+resource "yandex_compute_instance" "vm-2" {
+  name = "vm-2"
 
   resources {
-    cores  = 4
-    memory = 4
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
@@ -72,7 +71,6 @@ resource "yandex_compute_instance" "prod" {
 
 }
 
-# test
 resource "yandex_vpc_network" "network_terraform" {
   name = "net_terraform"
 }
@@ -82,4 +80,27 @@ resource "yandex_vpc_subnet" "subnet_terraform" {
   zone           = "ru-central1-b"
   network_id     = yandex_vpc_network.network_terraform.id
   v4_cidr_blocks = ["192.168.15.0/24"]
+}
+
+ scheduling_policy {
+    preemptible = true
+  }
+
+
+  connection {
+    type = "ssh"
+    user = "ubuntu"
+    private_key = file("/var/lib/jenkins/.ssh/build_key")
+    host = self.network_interface[0].nat_ip_address
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt update && sudo apt install python -y"
+    ]
+  }
+
+  provisioner "local-exec" {
+    command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
+  }
 }
