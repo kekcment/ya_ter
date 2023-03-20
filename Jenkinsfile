@@ -1,10 +1,5 @@
 pipeline {
     agent any
-    // environment {
-    //     YC_ACCOUNT_KEY_FILE = credentials('YC_ACCOUNT_KEY_FILE')
-    //     YC_FOLDER_ID = credentials('YC_FOLDER_ID')
-    //     YC_SUBNET_ID = credentials('YC_SUBNET_ID')
-    // }
    
      stages {
         stage('get project') {
