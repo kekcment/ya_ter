@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        // stage('test playbook run') {
+        // stage('connect to vm ') {
         //     steps {
         //         sh 'ansible-playbook -i /tmp/test1 --user=ubuntu --private-key=~/.ssh/build_key ansbl/ansbl_build/build.yml'
         //     }
