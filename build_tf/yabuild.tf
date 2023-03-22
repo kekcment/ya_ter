@@ -94,6 +94,6 @@ connection {
     ]
   }
 
-provisioner "local-exec" {
-    command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
-  }
+# provisioner "local-exec" {
+#     command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
+#   }
