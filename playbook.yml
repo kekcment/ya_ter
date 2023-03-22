@@ -1,0 +1,47 @@
+---
+- name: install soft
+  hosts: build
+  become: yes
+
+  tasks: 
+  - name: Ensure soft is present
+    apt: name={{item}} state=installed
+      # name: maven
+      # state: present
+    with_items:
+       - git
+       - docker.io
+       - maven  
+
+  # - name: Ensure git package is present
+  #   apt: 
+  #     name: git
+  #     state: present
+
+  # - name: Ensure default-jdk package is present
+  #   apt: 
+  #     name: default-jdk
+  #     state: present
+
+  # - name: Git clone
+  #   git:
+  #     repo: 'https://github.com/kekcment/calculator-servlet-example.git'
+  #     dest: /tmp/calculator-servlet-example
+  #     clone: yes
+
+  # - name: Check war.file exists
+  #   stat:
+  #     path: /tmp/calculator-servlet-example/target/mycalcwebapp.war
+  #   register: result
+
+  # - name: Build Maven artifact
+  #   command: mvn --batch-mode --quiet install
+  #   args:
+  #     chdir: /tmp/calculator-servlet-example/
+  #   when: not result.stat.exists  
+
+  # - name: Synchronize war.file
+  #   synchronize:
+  #     mode: pull
+  #     src: /tmp/calculator-servlet-example/target/mycalcwebapp.war
+  #     dest: /tmp/calculator-servlet-example/
