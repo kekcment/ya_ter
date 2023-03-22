@@ -1,5 +1,5 @@
 ---
-- name: install war.file
+- name: install soft
   hosts: build
   become: yes
 
