@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "yandex" {
-  service_account_key_file = "${file("/ya/key.json")}"
+  service_account_key_file = "${file("/ya/jenkins.json")}"
   cloud_id  = "b1g6n29jkok2srs36sqc"
   folder_id = "b1g6lkkjagvcniim0l5h"
   zone      = "ru-central1-b"
