@@ -47,7 +47,7 @@ resource "yandex_compute_instance" "vm-1" {
     preemptible = true
   }
 
-# }
+}
 
 
 # resource "yandex_compute_instance" "vm-2" {
@@ -81,20 +81,20 @@ resource "yandex_compute_instance" "vm-1" {
 # }
 
 
-connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file("/var/lib/jenkins/.ssh/build_key")
-    host = self.network_interface[0].nat_ip_address
-  }
+# connection {
+#     type = "ssh"
+#     user = "ubuntu"
+#     private_key = file("/var/lib/jenkins/.ssh/build_key")
+#     host = self.network_interface[0].nat_ip_address
+#   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt update && sudo apt install python -y"
-    ]
-  }
+#   provisioner "remote-exec" {
+#     inline = [
+#       "sudo apt update && sudo apt install python -y"
+#     ]
+#   }
 
-}
+# }
 
 # provisioner "local-exec" {
 #     command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
