@@ -29,13 +29,13 @@ resource "yandex_compute_instance" "vm-1" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu_image.id
-      type = "network-ssd"
+    #   type = "network-ssd"
       size = 20
     }
   }
 
   network_interface {
-    subnet_id = "enpbd52l5b93s7l0ku8n"
+    subnet_id = "e2lvp1dpmlcm62r0r221"
     nat       = true
   }
 
@@ -57,13 +57,13 @@ resource "yandex_compute_instance" "vm-2" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu_image.id
-      type = "network-ssd"
+    #   type = "network-ssd"
       size = 20
     }
   }
 
   network_interface {
-    subnet_id = "enpbd52l5b93s7l0ku8n"
+    subnet_id = "e2lvp1dpmlcm62r0r221"
     nat       = true
   }
 
