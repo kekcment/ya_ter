@@ -1,22 +1,18 @@
 pipeline {
-    agent {
-    docker {
-        image 'kekcment/jdk-plus:0.1.0'
-        args '--privileged -v /var/run/docker.sock:/var/run/docker.sock -u root'
-    }
-  }   
-
-     stages{ 
-      
-      stage('Copy source from git') {
-        steps {
-            echo 'git clone'
-            sh 'cd /tmp/'
-            git 'https://github.com/kekcment/ya_ter.git'
-        }    
-    } 
-     
-    
+    agent any
+    // environment {
+    //     YC_ACCOUNT_KEY_FILE = credentials('YC_ACCOUNT_KEY_FILE')
+    //     YC_FOLDER_ID = credentials('YC_FOLDER_ID')
+    //     YC_SUBNET_ID = credentials('YC_SUBNET_ID')
+    // }
+   
+     stages {
+        stage('get project') {
+            steps {
+                echo 'git clone'
+                git 'https://github.com/kekcment/yatest1.git'
+            }
+        }
 
         stage('test terraform run') {
             steps {
@@ -27,10 +23,10 @@ pipeline {
             }
         }
 
-        stage('test playbook run') {
-            steps {
-                sh 'ansible-playbook -i /tmp/test1 --user=ubuntu --private-key=~/.ssh/build_key ansbl/ansbl_build/build.yml'
-            }
-        }
+        // stage('test playbook run') {
+        //     steps {
+        //         sh 'ansible-playbook -i /tmp/test1 --user=ubuntu --private-key=~/.ssh/build_key ansbl/ansbl_build/build.yml'
+        //     }
+        // }
 }
 }
