@@ -83,24 +83,24 @@ resource "yandex_vpc_subnet" "subnet_terraform" {
   v4_cidr_blocks = ["192.168.15.0/24"]
 }
 
-scheduling_policy {
-    preemptible = true
-  }
+# scheduling_policy {
+#     preemptible = true
+#   }
 
 
-connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file("/var/lib/jenkins/.ssh/build_key")
-    host = self.network_interface[0].nat_ip_address
-  }
+# connection {
+#     type = "ssh"
+#     user = "ubuntu"
+#     private_key = file("/var/lib/jenkins/.ssh/build_key")
+#     host = self.network_interface[0].nat_ip_address
+#   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt update && sudo apt install python -y"
-    ]
-  }
+#   provisioner "remote-exec" {
+#     inline = [
+#       "sudo apt update && sudo apt install python -y"
+#     ]
+#   }
 
-provisioner "local-exec" {
-    command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
-  }
+# provisioner "local-exec" {
+#     command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
+#   }
