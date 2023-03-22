@@ -29,6 +29,7 @@ resource "yandex_compute_instance" "vm-1" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu_image.id
+      type = "network-ssd"
       size = 20
     }
   }
@@ -82,12 +83,12 @@ resource "yandex_vpc_subnet" "subnet_terraform" {
   v4_cidr_blocks = ["192.168.15.0/24"]
 }
 
- scheduling_policy {
+scheduling_policy {
     preemptible = true
   }
 
 
-  connection {
+connection {
     type = "ssh"
     user = "ubuntu"
     private_key = file("/var/lib/jenkins/.ssh/build_key")
@@ -100,7 +101,6 @@ resource "yandex_vpc_subnet" "subnet_terraform" {
     ]
   }
 
-  provisioner "local-exec" {
+provisioner "local-exec" {
     command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
   }
-}
