@@ -35,7 +35,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = "e2lvp1dpmlcm62r0r221"
+    subnet_id = "e2le7m4ponb9sq0ku4d1"
     nat       = true
   }
 
@@ -67,7 +67,7 @@ resource "yandex_compute_instance" "vm-2" {
   }
 
   network_interface {
-    subnet_id = "e2lvp1dpmlcm62r0r221"
+    subnet_id = "e2le7m4ponb9sq0ku4d1"
     nat       = true
   }
 
