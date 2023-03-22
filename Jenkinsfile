@@ -6,7 +6,7 @@ pipeline {
         stage('get project') {
             steps {
                 echo 'git clone'
-                git 'https://github.com/kekcment/yatest1.git'
+                git 'https://github.com/kekcment/ya_ter.git'
             }
         }
 
