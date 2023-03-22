@@ -47,7 +47,7 @@ resource "yandex_compute_instance" "vm-1" {
     preemptible = true
   }
 
-}
+# }
 
 
 # resource "yandex_compute_instance" "vm-2" {
@@ -93,6 +93,8 @@ connection {
       "sudo apt update && sudo apt install python -y"
     ]
   }
+
+}
 
 # provisioner "local-exec" {
 #     command = "echo > /tmp/test1 && echo '[build]' > /tmp/test1 && echo ${self.network_interface[0].nat_ip_address} >> /tmp/test1"
