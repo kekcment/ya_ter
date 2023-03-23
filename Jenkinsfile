@@ -20,7 +20,8 @@ pipeline {
 
         stage('connect to vm ') {
             steps {
-                sh 'ansible-playbook -i /tmp/test1 -u=ubuntu --private-key=~/.ssh/build_key playbook.yml'
+                // sh 'ansible-playbook -i /tmp/test1 -u=ubuntu --private-key=~/.ssh/build_key playbook.yml'
+                sh 'ansiblePlaybook credentialsId: 'ubuild', inventory: '/tmp/test1', playbook: 'playbook.yml', sudo: true'
             }
         }
 }
